@@ -61,7 +61,7 @@
                     <a href="/Product" class="nav-link">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/bahanbaku" class="nav-link">Bahan Baku</a>
+                    <a href="/bahan" class="nav-link">Bahan</a>
                 </li>
             </ul>
         </div>
