@@ -11,7 +11,7 @@
         }
         .sidebar {
             height: 100vh;
-            background-color: #ff9800; /* Warna sekunder (orange) */
+            background-color: #ff9800; 
             width: 250px;
         }
         .sidebar a {
@@ -23,14 +23,11 @@
         }
         .content {
             padding: 20px;
-            background-color: white; /* Warna primer (putih) */
+            background-color: white; 
             transition: margin-left 0.3s ease;
         }
         .collapsed-sidebar {
             margin-left: 0;
-        }
-        .expanded-sidebar {
-            margin-left: 250px;
         }
         .toggle-btn {
             position: absolute;
@@ -44,7 +41,7 @@
         }
         .logo {
             width: 100%;
-            max-width: 150px; /* Adjust size as needed */
+            max-width: 150px; 
             margin-bottom: 20px;
         }
     </style>
@@ -61,7 +58,7 @@
             <h3 class="text-white p-3">Menu</h3>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="/Inventory" class="nav-link">Inventory</a>
+                    <a href="/Product" class="nav-link">Product</a>
                 </li>
                 <li class="nav-item">
                     <a href="/bahanbaku" class="nav-link">Bahan Baku</a>
@@ -72,7 +69,7 @@
         <!-- Main Content -->
         <div class="content flex-grow-1 collapsed-sidebar" id="mainContent">
             <button class="toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-expanded="true" aria-controls="sidebarMenu">
-                &#x22EE; <!-- Icon for three dots (vertical ellipsis) -->
+                &#x22EE; 
             </button>
             @yield('content')
         </div>
