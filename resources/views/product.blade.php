@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <input type="text" class="form-control w-25" placeholder="Search in product">
-            <a href="add_product.html" class="btn btn-primary">+ Add Product</a>
+            <a href="/addProduct" class="btn btn-primary">+ Add Product</a>
         </div>
 
         <table class="table table-hover">
