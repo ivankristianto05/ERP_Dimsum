@@ -15,6 +15,7 @@
                     </th>
                     <th scope="col">Material</th>
                     <th scope="col">Stock</th>
+                    <th scope="col">UoM</th>
                     <th scope="col">Price</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -30,6 +31,7 @@
                         </div>
                     </td>
                     <td>{{ $material->jumlah }}</td>
+                    <td>{{ $material->satuan }}</td>
                     <td>Rp.{{ number_format($material->harga, 2) }}</td>
                     <td>
                         <a href="{{ route('materials.edit', $material->id) }}" class="btn btn-sm btn-warning">Update</a>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,12 +8,13 @@ class Material extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nama',
-        'jumlah',
-        'satuan',
-        'supplier',
-        'harga',
-        'foto',
-    ];
+    protected $fillable = ['nama', 'satuan']; // Add other fields as necessary
+
+    // Define the relationship with products
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)
+                    ->withPivot('jumlah') // Include the pivot field
+                    ->withTimestamps();
+    }
 }

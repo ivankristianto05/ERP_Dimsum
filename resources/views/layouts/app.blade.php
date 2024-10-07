@@ -58,7 +58,7 @@
             <h3 class="text-white p-3">Menu</h3>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="/Product" class="nav-link">Product</a>
+                    <a href="/products" class="nav-link">Products</a>
                 </li>
                 <li class="nav-item">
                     <a href="/Materials" class="nav-link">Materials</a>
