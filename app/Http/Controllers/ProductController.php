@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Material; // Add Material model
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,15 +10,14 @@ class ProductController extends Controller
     // Menampilkan semua produk
     public function index()
     {
-        $products = Product::with('materials')->get(); // Eager load materials
+        $products = Product::all();
         return view('products.index', compact('products'));
     }
 
     // Menampilkan form untuk membuat produk baru
     public function create()
     {
-        $materials = Material::all(); // Ambil semua material
-        return view('products.create', compact('materials'));
+        return view('products.create');
     }
 
     // Menyimpan produk baru
@@ -32,9 +30,6 @@ class ProductController extends Controller
             'harga' => 'required|numeric',
             'deskripsi' => 'required|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'materials' => 'required|array', // Validate materials array
-            'materials.*.id' => 'required|exists:materials,id', // Validate each material ID
-            'materials.*.jumlah' => 'required|numeric', // Validate each quantity
         ]);
 
         // Mengelola upload foto jika ada
@@ -43,12 +38,7 @@ class ProductController extends Controller
             $validatedData['foto'] = $filePath;
         }
 
-        $product = Product::create($validatedData);
-
-        // Attach materials to the product
-        foreach ($validatedData['materials'] as $material) {
-            $product->materials()->attach($material['id'], ['jumlah' => $material['jumlah']]);
-        }
+        Product::create($validatedData);
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil disimpan.');
     }
@@ -56,8 +46,7 @@ class ProductController extends Controller
     // Menampilkan form untuk mengedit produk
     public function edit(Product $product)
     {
-        $materials = Material::all(); // Get all materials
-        return view('products.edit', compact('product', 'materials'));
+        return view('products.edit', compact('product'));
     }
 
     // Memperbarui produk yang sudah ada
@@ -69,9 +58,6 @@ class ProductController extends Controller
             'harga' => 'required|numeric',
             'deskripsi' => 'required|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'materials' => 'required|array', // Validate materials array
-            'materials.*.id' => 'required|exists:materials,id', // Validate each material ID
-            'materials.*.jumlah' => 'required|numeric', // Validate each quantity
         ]);
 
         if ($request->hasFile('foto')) {
@@ -84,15 +70,7 @@ class ProductController extends Controller
             $validatedData['foto'] = $filePath;
         }
 
-        // Update product details
         $product->update($validatedData);
-
-        // Sync materials with the product
-        $materials = [];
-        foreach ($validatedData['materials'] as $material) {
-            $materials[$material['id']] = ['jumlah' => $material['jumlah']];
-        }
-        $product->materials()->sync($materials); // Sync materials
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
     }
@@ -105,8 +83,6 @@ class ProductController extends Controller
             \Storage::disk('public')->delete($product->foto);
         }
 
-        // Detach all materials before deleting the product
-        $product->materials()->detach();
         $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
