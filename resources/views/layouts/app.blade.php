@@ -10,7 +10,7 @@
         }
         .sidebar {
             height: 100vh;
-            background-color: #ff9800; 
+            background-color: #98e7e1; 
             width: 250px;
         }
         .sidebar a {
@@ -18,7 +18,7 @@
             text-decoration: none;
         }
         .sidebar a:hover {
-            background-color: #ff5722;
+            background-color: #3d76a5;
         }
         .content {
             padding: 20px;
@@ -51,7 +51,7 @@
         <!-- Sidebar -->
         <div class="sidebar collapse show" id="sidebarMenu">
         <div class="text-center p-3">
-    <img src="{{ asset('images/logo_dimsum_png.png') }}" alt="Logo" class="logo">
+    <img src="{{ asset('images/logo_dimsum.png') }}" alt="Logo" class="logo">
         </div>
 
 
