@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container">
     <h2 class="mb-4">Tambah Material</h2>
 
     <form action="{{ route('materials.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-4">
             <label for="foto">Foto:</label>
             <input type="file" name="foto" id="foto" class="form-control-file">
         </div>

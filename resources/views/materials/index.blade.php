@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <input type="text" class="form-control w-25" placeholder="Search materials">
             <a href="{{ route('materials.create') }}" class="btn btn-primary">+ Add Materials</a>
@@ -10,9 +10,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">
-                        <input type="checkbox">
-                    </th>
+                    <th></th>
                     <th scope="col">Material</th>
                     <th scope="col">Stock</th>
                     <th scope="col">UoM</th>
@@ -23,10 +21,12 @@
             <tbody>
                 @forelse($materials as $material)
                 <tr>
-                    <td><input type="checkbox"></td>
+                    <td>
+                        <img src="{{ asset($material->foto) }}" alt="{{ $material->nama }}" width="50" class="mr-2">
+                    </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="{{ asset('storage/' . $material->foto) }}" alt="{{ $material->nama }}" width="50" class="mr-2">
+                            
                             {{ $material->nama }}
                         </div>
                     </td>

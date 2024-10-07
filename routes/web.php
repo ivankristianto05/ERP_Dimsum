@@ -19,11 +19,11 @@ Route::put('/products/{product}', [ProductController::class, 'update'])->name('p
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 // Route untuk bahan baku, menggunakan MaterialController
-Route::get('/Materials', [MaterialController::class, 'index'])->name('materials.index');
-Route::get('/Materials/create', [MaterialController::class, 'create'])->name('materials.create');
-Route::post('/Materials', [MaterialController::class, 'store'])->name('materials.store');
-Route::get('/Materials/{id}/edit', [MaterialController::class, 'edit'])->name('materials.edit');
-Route::put('/Materials/{id}', [MaterialController::class, 'update'])->name('materials.update');
-Route::delete('/Materials/{id}', [MaterialController::class, 'destroy'])->name('materials.destroy');
+Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
+Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
+Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
+Route::get('/materials/{id}/edit', [MaterialController::class, 'edit'])->name('materials.edit');
+Route::put('/materials/{id}', [MaterialController::class, 'update'])->name('materials.update');
+Route::delete('/materials/{id}', [MaterialController::class, 'destroy'])->name('materials.destroy');
 
 

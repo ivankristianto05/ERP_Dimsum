@@ -18,7 +18,7 @@ class MaterialController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
-            'jumlah' => 'required|integer',
+            'jumlah' => 'required',
             'satuan' => 'required|string|max:100',
             'supplier' => 'required|string|max:255',
             'harga' => 'required|numeric',

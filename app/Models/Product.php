@@ -12,10 +12,10 @@ class Product extends Model
     protected $fillable = [
         'nama', 'kategori', 'codeprodak', 'harga', 'deskripsi', 'foto'
     ];
+
     public function materials()
     {
-        return $this->belongsToMany(Material::class)
-                    ->withPivot('jumlah') 
-                    ->withTimestamps();
+        return $this->belongsToMany(Material::class, 'product_material', 'product_id', 'material_id')
+                    ->withPivot('jumlah')->select('product_material.jumlah', 'materials.nama','satuan');;
     }
 }

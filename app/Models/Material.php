@@ -8,7 +8,7 @@ class Material extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'satuan']; // Add other fields as necessary
+    protected $guarded = []; // Add other fields as necessary
 
     // Define the relationship with products
     public function products()
@@ -16,5 +16,10 @@ class Material extends Model
         return $this->belongsToMany(Product::class)
                     ->withPivot('jumlah') // Include the pivot field
                     ->withTimestamps();
+    }
+    
+    public function productMaterials()
+    {
+        return $this->hasMany(ProductMaterial::class, 'material_id');
     }
 }
