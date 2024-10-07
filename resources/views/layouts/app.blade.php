@@ -51,9 +51,10 @@
     <div class="d-flex">
         <!-- Sidebar -->
         <div class="sidebar collapse show" id="sidebarMenu">
-            <div class="text-center p-3">
-                <img src="logo.png" alt="Logo" class="logo">
-            </div>
+        <div class="text-center p-3">
+    <img src="{{ asset('images/logo_dimsum_png.png') }}" alt="Logo" class="logo">
+        </div>
+
 
             <h3 class="text-white p-3">Menu</h3>
             <ul class="nav flex-column">
