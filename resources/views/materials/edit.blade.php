@@ -4,8 +4,8 @@
 <div class="container">
     <h2 class="mb-4">{{ isset($material) ? 'Edit Material' : 'Tambah Material' }}</h2>
 
-    <form action="{{ isset($material) ? route('materials.update', ['id' => $material->id]) : route('materials.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-        @csrf
+    <form action="{{ isset($material) ? route('materials.update', $material->id) : route('materials.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
         @if (isset($material))
             @method('PUT')
         @endif
