@@ -34,8 +34,8 @@
                     <td>{{ $material->satuan }}</td>
                     <td>Rp.{{ number_format($material->harga, 2) }}</td>
                     <td>
-                        <a href="{{ route('materials.edit', $material->id) }}" class="btn btn-sm btn-warning">Update</a>
-                        <form action="{{ route('materials.destroy', $material->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('materials.edit', $material) }}" class="btn btn-sm btn-warning">Update</a>
+                        <form action="{{ route('materials.destroy', $material) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
