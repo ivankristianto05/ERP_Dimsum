@@ -24,6 +24,6 @@ Route::get('/materials/create', [MaterialController::class, 'create'])->name('ma
 Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
 Route::get('/materials/{material}/edit', [MaterialController::class, 'edit'])->name('materials.edit');
 Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('materials.update');
-Route::delete('/materials/{id}', [MaterialController::class, 'destroy'])->name('materials.destroy');
+Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
 
 
