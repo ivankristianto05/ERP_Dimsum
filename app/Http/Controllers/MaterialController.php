@@ -51,34 +51,34 @@ class MaterialController extends Controller
     }
 
     // Menampilkan form edit material
-    public function edit(Material $material)
-    {
-        return view('materials.edit', compact('material'));
-    }
-
+    public function edit($id)
+{
+    $material = Material::findOrFail($id);
+    return view('materials.edit', compact('material'));
+}
     // Mengupdate material ke database
-    public function update(Request $request, Material $material)
-    {
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'jumlah' => 'required|integer',
-            'satuan' => 'required|string|max:100',
-            'supplier' => 'required|string|max:255',
-            'harga' => 'required|numeric',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+public function update(Request $request, Material $material)
+{
+    $validatedData = $request->validate([
+        'nama' => 'required|string|max:255',
+        'jumlah' => 'required|integer',
+        'satuan' => 'required|string|max:100',
+        'supplier' => 'required|string|max:255',
+        'harga' => 'required|numeric',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        // Update foto jika ada
-        if ($request->hasFile('foto')) {
-            $fileName = time() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('uploads'), $fileName);
-            $validatedData['foto'] = 'uploads/' . $fileName;
-        }
-
-        $material->update($validatedData);
-
-        return redirect()->route('materials.index')->with('success', 'Material berhasil diupdate.');
+    // Update foto jika ada
+    if ($request->hasFile('foto')) {
+        $fileName = time() . '.' . $request->foto->extension();
+        $request->foto->move(public_path('uploads'), $fileName);
+        $validatedData['foto'] = 'uploads/' . $fileName;
     }
+
+    $material->update($validatedData);
+
+    return redirect()->route('materials.index')->with('success', 'Material berhasil diupdate.');
+}
 
     // Menghapus material
     public function destroy(Material $material)
