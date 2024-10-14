@@ -3,7 +3,6 @@
 @section('content')
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <input type="text" class="form-control w-25" placeholder="Search materials">
             <a href="{{ route('materials.create') }}" class="btn btn-primary">+ Add Materials</a>
         </div>
 
@@ -20,32 +19,34 @@
             </thead>
             <tbody>
                 @forelse($materials as $material)
-                <tr>
-                    <td>
-                        <img src="{{ asset($material->foto) }}" alt="{{ $material->nama }}" width="50" class="mr-2">
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            
-                            {{ $material->nama }}
-                        </div>
-                    </td>
-                    <td>{{ $material->jumlah }}</td>
-                    <td>{{ $material->satuan }}</td>
-                    <td>Rp.{{ number_format($material->harga, 2) }}</td>
-                    <td>
-                        <a href="{{ route('materials.edit', $material) }}" class="btn btn-sm btn-warning">Update</a>
-                        <form action="{{ route('materials.destroy', $material) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset($material->foto) }}" alt="{{ $material->nama }}" width="50"
+                                class="mr-2">
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+
+                                {{ $material->nama }}
+                            </div>
+                        </td>
+                        <td>{{ $material->jumlah }}</td>
+                        <td>{{ $material->satuan }}</td>
+                        <td>Rp.{{ number_format($material->harga, 2) }}</td>
+                        <td>
+                            <a href="{{ route('materials.edit', $material) }}" class="btn btn-sm btn-warning">Update</a>
+                            <form action="{{ route('materials.destroy', $material) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
                 @empty
-                <tr>
-                    <td colspan="6" class="text-center">No materials found</td>
-                </tr>
+                    <tr>
+                        <td colspan="6" class="text-center">No materials found</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>

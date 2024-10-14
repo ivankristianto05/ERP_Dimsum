@@ -86,7 +86,7 @@ public function update(Request $request, Material $material)
         if ($material->foto) {
             unlink(public_path($material->foto));
         }
-        
+
         $material->delete();
         return redirect()->route('materials.index')->with('success', 'Material berhasil dihapus.');
     }

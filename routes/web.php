@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\BoMController; // Pastikan untuk mengimpor BoMController
 
 // Route ke halaman dashboard
 Route::get('/', function () {
@@ -26,4 +27,11 @@ Route::get('/materials/{material}/edit', [MaterialController::class, 'edit'])->n
 Route::put('/materials/{material}', [MaterialController::class, 'update'])->name('materials.update');
 Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
 
+// Route untuk BoM, menggunakan BoMController
+Route::get('/bom', [BoMController::class, 'index'])->name('bom.index');
+Route::get('/bom/create', [BoMController::class, 'create'])->name('bom.create'); // Form untuk menambah BoM
+Route::post('/bom', [BoMController::class, 'store'])->name('bom'); // Simpan BoM baru
+Route::get('/bom/{bom}/edit', [BoMController::class, 'edit'])->name('bom.edit'); // Form untuk edit BoM
+Route::put('/bom/{bom}', [BoMController::class, 'update'])->name('bom.update'); // Perbarui BoM
+Route::delete('/bom/{bom}', [BoMController::class, 'destroy'])->name('bom.destroy'); // Hapus BoM
 
