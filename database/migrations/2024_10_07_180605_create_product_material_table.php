@@ -16,11 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('material_id'); // Kolom material_id
             $table->unsignedBigInteger('product_id'); // Kolom product_id
             $table->integer('jumlah'); // Kolom jumlah
-
             // Menambahkan foreign key dengan cascade on delete dan on update
             $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }

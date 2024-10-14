@@ -435,6 +435,29 @@ h6 {
   transition: 0.3s;
   width: 100%;
 }
+/* Hide submenu by default */
+.sidebar-nav .submenu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+}
+
+/* Show submenu on hover */
+.sidebar-nav .nav-item:hover .submenu {
+  display: block;
+}
+
+/* Styling submenu links */
+.sidebar-nav .submenu li a {
+  display: block;
+  padding: 10px;
+  color: #444;
+  text-decoration: none;
+}
+
+.sidebar-nav .submenu li a:hover {
+  background-color: #f5f5f5;
+}
 
 .header .search-form input:focus,
 .header .search-form input:hover {

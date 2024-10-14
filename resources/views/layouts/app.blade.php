@@ -25,16 +25,7 @@
   <link href="{{asset('assets_dashboard/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
   <link href="{{asset('assets_dashboard/vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
   <link href="{{asset('assets_dashboard/css/style.css')}}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -89,11 +80,12 @@
 
   </header><!-- End Header -->
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+  <<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
+<<<<<<< HEAD
       <li class="nav-item">
         <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="/products">
           <i class="bi bi-grid"></i>
@@ -120,6 +112,26 @@
 
   </aside><!-- End Sidebar -->
 
+=======
+    <!-- Inventory Item with hover dropdown -->
+    <li class="nav-item">
+      <a class="nav-link {{ request()->is('inventory*') ? 'active' : '' }}" href="#">
+        <i class="bi bi-box"></i>
+        <span>Inventory</span>
+      </a>
+      <ul class="submenu">
+        <li><a class="{{ request()->is('products*') ? 'active' : '' }}" href="/products">Produk</a></li>
+        <li><a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials">Material</a></li>
+        <li><a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom">BoM</a></li>
+      </ul>
+    </li>
+
+  </ul>
+
+</aside><!-- End Sidebar -->
+
+
+>>>>>>> 569fd5ae9c804264119225ddd184061d440c9bf8
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -149,10 +161,6 @@
     &copy; Copyright <strong><span>InformatikaITN</span></strong>. All Rights Reserved
   </div>
   <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
   </div>
 </footer><!-- End Footer -->
 
