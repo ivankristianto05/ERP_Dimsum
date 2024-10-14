@@ -30,8 +30,9 @@ Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->
 // Route untuk BoM, menggunakan BoMController
 Route::get('/bom', [BoMController::class, 'index'])->name('bom.index');
 Route::get('/bom/create', [BoMController::class, 'create'])->name('bom.create'); // Form untuk menambah BoM
-Route::post('/bom', [BoMController::class, 'store'])->name('bom'); // Simpan BoM baru
+Route::post('/bom', [BoMController::class, 'store'])->name('bom.store'); // Simpan BoM baru
 Route::get('/bom/{bom}/edit', [BoMController::class, 'edit'])->name('bom.edit'); // Form untuk edit BoM
 Route::put('/bom/{bom}', [BoMController::class, 'update'])->name('bom.update'); // Perbarui BoM
 Route::delete('/bom/{bom}', [BoMController::class, 'destroy'])->name('bom.destroy'); // Hapus BoM
+Route::get('/bom/report', [BomController::class, 'report'])->name('bom.report');
 
