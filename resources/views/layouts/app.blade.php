@@ -51,6 +51,7 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
         <li class="nav-item dropdown pe-3">
+
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets_dashboard/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
@@ -85,34 +86,6 @@
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
-<<<<<<< HEAD
-      <li class="nav-item">
-        <a class="nav-link {{ request()->is('products*') ? 'active' : '' }}" href="/products">
-          <i class="bi bi-grid"></i>
-          <span>Produk</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link {{ request()->is('materials*') ? 'active' : '' }}" href="/materials">
-          <i class="bi bi-grid"></i>
-          <span>Material</span>
-        </a>
-      </li>
-
-      <!-- Tambahkan Menu untuk BoM -->
-      <li class="nav-item">
-        <a class="nav-link {{ request()->is('bom*') ? 'active' : '' }}" href="/bom">
-          <i class="bi bi-grid"></i>
-          <span>BoM</span>
-        </a>
-      </li><!-- End BoM Nav -->
-
-    </ul>
-
-  </aside><!-- End Sidebar -->
-
-=======
     <!-- Inventory Item with hover dropdown -->
     <li class="nav-item">
       <a class="nav-link {{ request()->is('inventory*') ? 'active' : '' }}" href="#">
@@ -131,7 +104,6 @@
 </aside><!-- End Sidebar -->
 
 
->>>>>>> 569fd5ae9c804264119225ddd184061d440c9bf8
   <main id="main" class="main">
 
     <div class="pagetitle">
