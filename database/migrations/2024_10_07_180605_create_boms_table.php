@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('bom_number'); // Kolom ID BOM
             $table->unsignedBigInteger('product_id'); // Kolom Produk
+            $table->unsignedInteger('qty'); // Kolom Quantity
+            $table->decimal('cost', 10, 2); // Kolom Cost (10 digits total, 2 decimal places)
             $table->timestamps();
             
             // Relasi ke tabel produk
