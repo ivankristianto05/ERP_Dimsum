@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedInteger('qty'); // Kolom Quantity
             $table->decimal('cost', 10, 2); // Kolom Cost (10 digits total, 2 decimal places)
             $table->timestamps();
-            
             // Relasi ke tabel produk
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
