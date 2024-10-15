@@ -1,19 +1,19 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class BoM extends Model
+class Bom extends Model
 {
-    use HasFactory;
+    protected $fillable = ['bom_number', 'product_id'];
 
-    protected $fillable = ['nama', 'kode', 'qty', 'cost'];
-
-    // Relasi dengan Material
-    public function materials()
+    public function details()
     {
-        return $this->hasMany(Material::class);
+        return $this->hasMany(BomDetail::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }
