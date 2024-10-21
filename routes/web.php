@@ -36,3 +36,11 @@ Route::put('/bom/{bom}', [BoMController::class, 'update'])->name('bom.update'); 
 Route::delete('/bom/{bom}', [BoMController::class, 'destroy'])->name('bom.destroy'); // Hapus BoM
 Route::get('/bom/report', [BomController::class, 'report'])->name('bom.report');
 
+// Route untuk manufacturing menampilkan produk yang menggunakan bahan baku tertentu untuk di produksi
+Route::get('/manufacturing', function () {
+    // Menampilkan halaman manufacturing dengan produk yang menggunakan bahan baku tertentu
+    return view('manufacturing.index',);
+})->name('manufacturing.index');
+Route::get('/manufacturing/create', function () {
+    return view('manufacturing.create');
+})->name('manufacturing.create');

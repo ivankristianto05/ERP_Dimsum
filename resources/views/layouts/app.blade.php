@@ -96,6 +96,7 @@
         <li><a class="{{ request()->is('products*') ? 'active' : '' }}" href="/products">Produk</a></li>
         <li><a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials">Material</a></li>
         <li><a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom">BoM</a></li>
+        <li><a class="{{ request()->is('manufacturing*') ? 'active' : '' }}" href="/manufacturing">Manufacturing</a></li>
       </ul>
     </li>
 
