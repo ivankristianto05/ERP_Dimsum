@@ -37,19 +37,21 @@ class BomController extends Controller
     public function store(Request $request)
     {
         // Validasi input dari form
-        $request->validate([
-            'bom_number' => 'required|unique:boms,bom_number', // BoM harus unik
-            'product_id' => 'required|exists:products,id', // Produk harus ada di database
-            'material_id.*' => 'required|exists:materials,id', // Material harus valid
-            'qty.*' => 'required|integer', // Quantity harus integer
-            'satuan.*' => 'required|string', // Satuan harus string
-            'cost.*' => 'required|numeric' // Cost harus numerik
-        ]);
+        // $request->validate([
+        //     'bom_number' => 'required|unique:boms,bom_number', // BoM harus unik
+        //     'product_id' => 'required|exists:products,id', // Produk harus ada di database
+        //     'material_id.*' => 'required|exists:materials,id', // Material harus valid
+        //     'qty.*' => 'required|integer', // Quantity harus integer
+        //     'satuan.*' => 'required|string', // Satuan harus string
+        //     'cost.*' => 'required|numeric' // Cost harus numerik
+        // ]);
 
         // Buat BoM baru dengan data yang diinput
         $bom = Bom::create([
             'bom_number' => $request->bom_number,
-            'product_id' => $request->product_id
+            'product_id' => $request->product_id,
+            'qty' => $request->quantity,
+            'cost' => $request->total_cost
         ]);
 
         // Loop melalui setiap material yang ditambahkan

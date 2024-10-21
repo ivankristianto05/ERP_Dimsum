@@ -32,7 +32,7 @@
                         </td>
                         <td>{{ $material->jumlah }}</td>
                         <td>{{ $material->satuan }}</td>
-                        <td>Rp.{{ number_format($material->harga, 2) }}</td>
+                        <td>Rp.{{ number_format($material->harga) }}</td>
                         <td>
                             <a href="{{ route('materials.edit', $material) }}" class="btn btn-sm btn-warning">Update</a>
                             <form action="{{ route('materials.destroy', $material) }}" method="POST"

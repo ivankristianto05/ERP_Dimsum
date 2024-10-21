@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 class Bom extends Model
 {
-    protected $fillable = ['bom_number', 'product_id'];
+    protected $guarded = [];
 
     public function details()
     {

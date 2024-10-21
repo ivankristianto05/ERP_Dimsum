@@ -10,7 +10,7 @@
             <!-- BoM ID (Auto-filled field) -->
             <div class="form-group col-md-6">
                 <label for="bom_number">BoM ID:</label>
-                <input type="text" name="bom_number" class="form-control" value="{{ old('bom_number') }}" required readonly>
+                <input type="text" name="bom_number" class="form-control" value="{{uniqid() }}" required >
             </div>
 
             <!-- Nama Produk -->
@@ -35,7 +35,7 @@
             <!-- Cost -->
             <div class="form-group col-md-6">
                 <label for="cost">Cost:</label>
-                <input type="text" name="cost" class="form-control" value="{{ old('cost') }}" required>
+                <input type="text" name="total_cost" class="form-control" value="{{ old('total_cost') }}" required>
             </div>
         </div>
         
@@ -51,7 +51,7 @@
                     <select name="material_id[]" class="form-control" required>
                         <option value="">-- Select Material --</option>
                         @foreach($materials as $material)
-                            <option value="{{ $material->id }}">{{ $material->nama }}</option>
+                            <option data-price="{{$material->harga}}" data-satuan="{{$material->satuan}}" value="{{ $material->id }}">{{ $material->nama }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -102,6 +102,36 @@
         newMaterial.querySelector('.remove-material').addEventListener('click', function() {
             newMaterial.remove();
         });
+
+        newMaterial.querySelector('select[name="material_id[]"]').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+                const price = selectedOption.getAttribute('data-price'); // Ambil data-price
+                const satuan = selectedOption.getAttribute('data-satuan');
+                // Temukan elemen input cost yang sesuai dan set nilainya
+                const costInput = this.closest('.material-item').querySelector('input[name="cost[]"]');
+                const satuanInput = this.closest('.material-item').querySelector('input[name="satuan[]"]');
+                if (costInput) {
+                    costInput.value = price || ''; // Set nilai atau kosongkan jika tidak ada
+                }
+                if (satuanInput) {
+                    satuanInput.value = satuan || ''; // Set nilai atau kosongkan jika tidak ada
+                }
+            });
+
+            newMaterial.querySelector('input[name="qty[]"]').addEventListener('keyup', function () {
+                const val = this.value
+                console.log(val)
+                const selectPrice = this.closest('.material-item').querySelector('select[name="material_id[]"]'); // Ambil data-price
+                const selectOption = selectPrice.options[selectPrice.selectedIndex]
+                const price = selectOption.getAttribute('data-price')
+                // Temukan elemen input cost yang sesuai dan set nilainya
+                console.log(price)
+                const costInput = this.closest('.material-item').querySelector('input[name="cost[]"]');
+                if (costInput) {
+                    costInput.value = price * val || ''; // Set nilai atau kosongkan jika tidak ada
+                }
+
+            });
     });
 
     // Attach remove event listener to existing remove button
@@ -111,4 +141,47 @@
         });
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Ambil semua dropdown material
+        const materialSelects = document.querySelectorAll('select[name="material_id[]"]');
+        const materialQty = document.querySelectorAll('input[name="qty[]"]');
+
+        materialSelects.forEach(select => {
+            select.addEventListener('change', function () {
+                const selectedOption = this.options[this.selectedIndex];
+                const price = selectedOption.getAttribute('data-price'); // Ambil data-price
+                const satuan = selectedOption.getAttribute('data-satuan');
+                // Temukan elemen input cost yang sesuai dan set nilainya
+                const costInput = this.closest('.material-item').querySelector('input[name="cost[]"]');
+                const satuanInput = this.closest('.material-item').querySelector('input[name="satuan[]"]');
+                if (costInput) {
+                    costInput.value = price || ''; // Set nilai atau kosongkan jika tidak ada
+                }
+                if (satuanInput) {
+                    satuanInput.value = satuan || ''; // Set nilai atau kosongkan jika tidak ada
+                }
+            });
+        });
+
+        materialQty.forEach(input => {
+            input.addEventListener('keyup', function () {
+                const val = this.value
+      
+                const selectPrice = this.closest('.material-item').querySelector('select[name="material_id[]"]'); // Ambil data-price
+                const selectOption = selectPrice.options[selectPrice.selectedIndex]
+                const price = selectOption.getAttribute('data-price')
+                // Temukan elemen input cost yang sesuai dan set nilainya
+
+                const costInput = this.closest('.material-item').querySelector('input[name="cost[]"]');
+                if (costInput) {
+                    costInput.value = price * val || ''; // Set nilai atau kosongkan jika tidak ada
+                }
+
+            });
+        });
+    });
+</script>
+
 @endsection

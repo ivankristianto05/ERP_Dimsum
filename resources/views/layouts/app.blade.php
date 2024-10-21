@@ -87,7 +87,7 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <!-- Inventory Item with hover dropdown -->
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link {{ request()->is('inventory*') ? 'active' : '' }}" href="#">
         <i class="bi bi-box"></i>
         <span>Inventory</span>
@@ -97,6 +97,18 @@
         <li><a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials">Material</a></li>
         <li><a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom">BoM</a></li>
         <li><a class="{{ request()->is('manufacturing*') ? 'active' : '' }}" href="/manufacturing">Manufacturing</a></li>
+      </ul>
+    </li> --}}
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
+        <i class="bi bi-menu-button-wide"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
+        <li><a class="{{ request()->is('products*') ? 'active' : '' }}" href="/products"><i class="bi bi-circle"></i>Produk</a></li>
+        <li><a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials"><i class="bi bi-circle"></i>Material</a></li>
+        <li><a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom"><i class="bi bi-circle"></i>BoM</a></li>
+        <li><a class="{{ request()->is('manufacturing*') ? 'active' : '' }}" href="/manufacturing"><i class="bi bi-circle"></i>Manufacturing</a></li>
       </ul>
     </li>
 
@@ -140,17 +152,17 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="assets_dashboard/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets_dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets_dashboard/vendor/chart.js/chart.umd.js"></script>
-<script src="assets_dashboard/vendor/echarts/echarts.min.js"></script>
-<script src="assets_dashboard/vendor/quill/quill.js"></script>
-<script src="assets_dashboard/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets_dashboard/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets_dashboard/vendor/php-email-form/validate.js"></script>
+<script src="{{asset('assets_dashboard/vendor/apexcharts/apexcharts.min.js')}}"></script>
+<script src="{{asset('assets_dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets_dashboard/vendor/chart.js/chart.umd.js')}}"></script>
+<script src="{{asset('assets_dashboard/vendor/echarts/echarts.min.js')}}"></script>
+<script src="{{asset('assets_dashboard/vendor/quill/quill.js')}}"></script>
+<script src="{{asset('assets_dashboard/vendor/simple-datatables/simple-datatables.js')}}"></script>
+<script src="{{asset('assets_dashboard/vendor/tinymce/tinymce.min.js')}}"></script>
+<script src="{{asset('assets_dashboard/vendor/php-email-form/validate.js')}}"></script>
 
 <!-- Template Main JS File -->
-<script src="assets_dashboard/js/main.js"></script>
+<script src="{{asset('assets_dashboard/js/main.js')}}"></script>
 
 </body>
 
