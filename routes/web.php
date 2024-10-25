@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\BoMController; // Pastikan untuk mengimpor BoMController
+use App\Http\Controllers\BoMController;
+use App\Http\Controllers\VendorController; // Pastikan VendorController diimpor
 
 // Route ke halaman dashboard
 Route::get('/', function () {
@@ -14,7 +15,7 @@ Route::get('/', function () {
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show'); // Jika Anda ingin menampilkan detail produk
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
@@ -29,18 +30,20 @@ Route::delete('/materials/{material}', [MaterialController::class, 'destroy'])->
 
 // Route untuk BoM, menggunakan BoMController
 Route::get('/bom', [BoMController::class, 'index'])->name('bom.index');
-Route::get('/bom/create', [BoMController::class, 'create'])->name('bom.create'); // Form untuk menambah BoM
-Route::post('/bom', [BoMController::class, 'store'])->name('bom.store'); // Simpan BoM baru
-Route::get('/bom/{bom}/edit', [BoMController::class, 'edit'])->name('bom.edit'); // Form untuk edit BoM
-Route::put('/bom/{bom}', [BoMController::class, 'update'])->name('bom.update'); // Perbarui BoM
-Route::delete('/bom/{bom}', [BoMController::class, 'destroy'])->name('bom.destroy'); // Hapus BoM
-Route::get('/bom/report', [BomController::class, 'report'])->name('bom.report');
+Route::get('/bom/create', [BoMController::class, 'create'])->name('bom.create');
+Route::post('/bom', [BoMController::class, 'store'])->name('bom.store');
+Route::get('/bom/{bom}/edit', [BoMController::class, 'edit'])->name('bom.edit');
+Route::put('/bom/{bom}', [BoMController::class, 'update'])->name('bom.update');
+Route::delete('/bom/{bom}', [BoMController::class, 'destroy'])->name('bom.destroy');
+Route::get('/bom/report', [BoMController::class, 'report'])->name('bom.report');
 
-// Route untuk manufacturing menampilkan produk yang menggunakan bahan baku tertentu untuk di produksi
+// Route untuk manufacturing
 Route::get('/manufacturing', function () {
-    // Menampilkan halaman manufacturing dengan produk yang menggunakan bahan baku tertentu
-    return view('manufacturing.index',);
+    return view('manufacturing.index');
 })->name('manufacturing.index');
 Route::get('/manufacturing/create', function () {
     return view('manufacturing.create');
 })->name('manufacturing.create');
+
+// Route untuk vendor, menggunakan resource controller
+Route::resource('vendor', VendorController::class)->except(['show']);

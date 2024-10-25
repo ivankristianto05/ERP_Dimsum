@@ -109,7 +109,8 @@
         <li><a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials"><i class="bi bi-circle"></i>Material</a></li>
         <li><a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom"><i class="bi bi-circle"></i>BoM</a></li>
         <li><a class="{{ request()->is('manufacturing*') ? 'active' : '' }}" href="/manufacturing"><i class="bi bi-circle"></i>Manufacturing</a></li>
-      </ul>
+        <li><a class="{{ request()->is('vendor*') ? 'active' : '' }}" href="/vendor"><i class="bi bi-circle"></i>Vendor</a></li>
+    </ul>
     </li>
 
   </ul>
