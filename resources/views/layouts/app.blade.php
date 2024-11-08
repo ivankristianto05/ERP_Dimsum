@@ -82,62 +82,59 @@
   </header><!-- End Header -->
 
   <<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
-
-  <ul class="sidebar-nav" id="sidebar-nav">
-
-    <!-- Inventory Item with hover dropdown -->
-    {{-- <li class="nav-item">
-      <a class="nav-link {{ request()->is('inventory*') ? 'active' : '' }}" href="#">
-        <i class="bi bi-box"></i>
-        <span>Inventory</span>
-      </a>
-      <ul class="submenu">
-        <li><a class="{{ request()->is('products*') ? 'active' : '' }}" href="/products">Produk</a></li>
-        <li><a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials">Material</a></li>
-        <li><a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom">BoM</a></li>
-        <li><a class="{{ request()->is('manufacturing*') ? 'active' : '' }}" href="/manufacturing">Manufacturing</a></li>
-      </ul>
-    </li> --}}
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
-        <i class="bi bi-menu-button-wide"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
-        <li><a class="{{ request()->is('products*') ? 'active' : '' }}" href="/products"><i class="bi bi-circle"></i>Produk</a></li>
-        <li><a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials"><i class="bi bi-circle"></i>Material</a></li>
-        <li><a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom"><i class="bi bi-circle"></i>BoM</a></li>
-        <li><a class="{{ request()->is('manufacturing*') ? 'active' : '' }}" href="/manufacturing"><i class="bi bi-circle"></i>Manufacturing</a></li>
-        <li><a class="{{ request()->is('vendor*') ? 'active' : '' }}" href="/vendor"><i class="bi bi-circle"></i>Vendor</a></li>
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <!-- Inventori dan Produksi -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#inventory-production-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Inventori dan Produksi</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="inventory-production-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a class="{{ request()->is('products*') ? 'active' : '' }}" href="/products">
+              <i class="bi bi-circle"></i>Produk
+            </a>
+          </li>
+          <li>
+            <a class="{{ request()->is('materials*') ? 'active' : '' }}" href="/materials">
+              <i class="bi bi-circle"></i>Material
+            </a>
+          </li>
+          <li>
+            <a class="{{ request()->is('bom*') ? 'active' : '' }}" href="/bom">
+              <i class="bi bi-circle"></i>BoM
+            </a>
+          </li>
+          <li>
+            <a class="{{ request()->is('manufacturing*') ? 'active' : '' }}" href="/manufacturing">
+              <i class="bi bi-circle"></i>Manufacturing
+            </a>
+          </li>
+        </ul>
+      </li>
+  
+      <!-- Pemasok dan Permintaan Pembelian -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#supplier-rfq-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-file-earmark-plus"></i><span>Pemasok dan Permintaan Pembelian</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="supplier-rfq-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li>
+            <a class="{{ request()->is('rfq*') ? 'active' : '' }}" href="/rfq/create">
+              <i class="bi bi-circle"></i>RFQ
+            </a>
+          </li>
+          <li>
+            <a class="{{ request()->is('vendor*') ? 'active' : '' }}" href="/vendor">
+              <i class="bi bi-circle"></i>Vendor
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
-    </li>
-
-    <!-- RFQ Item -->
-    <li class="nav-item">
-      <a class="nav-link {{ request()->is('rfq/create') ? 'active' : 'collapsed' }}" href="/rfq/create">
-        <i class="bi bi-file-earmark-plus"></i>
-        <span>RFQ</span>
-      </a>
-    </li>
-
-  </ul>
-
-</aside><!-- End Sidebar -->
-
+  </aside><!-- End Sidebar -->
 
   <main id="main" class="main">
-
-    {{-- <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title --> --}}
-
     <section class="section dashboard">
         <div class="card recent-sales overflow-auto py-4">
 
