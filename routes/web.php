@@ -47,3 +47,8 @@ Route::get('/manufacturing/create', function () {
 
 // Route untuk vendor, menggunakan resource controller
 Route::resource('vendor', VendorController::class)->except(['show']);
+
+//route rfq
+Route::get('/rfq/create', function () {
+    return view('rfq.create');
+})->name('rfq.create');

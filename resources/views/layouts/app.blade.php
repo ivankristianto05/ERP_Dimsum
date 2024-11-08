@@ -113,6 +113,14 @@
     </ul>
     </li>
 
+    <!-- RFQ Item -->
+    <li class="nav-item">
+      <a class="nav-link {{ request()->is('rfq/create') ? 'active' : 'collapsed' }}" href="/rfq/create">
+        <i class="bi bi-file-earmark-plus"></i>
+        <span>RFQ</span>
+      </a>
+    </li>
+
   </ul>
 
 </aside><!-- End Sidebar -->
