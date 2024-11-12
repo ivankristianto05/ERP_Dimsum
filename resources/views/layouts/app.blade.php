@@ -120,7 +120,7 @@
         </a>
         <ul id="supplier-rfq-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a class="{{ request()->is('rfq*') ? 'active' : '' }}" href="/rfq/create">
+            <a class="{{ request()->is('rfq*') ? 'active' : '' }}" href="/rfq/index">
               <i class="bi bi-circle"></i>RFQ
             </a>
           </li>

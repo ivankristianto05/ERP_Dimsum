@@ -52,3 +52,6 @@ Route::resource('vendor', VendorController::class)->except(['show']);
 Route::get('/rfq/create', function () {
     return view('rfq.create');
 })->name('rfq.create');
+Route::get('/rfq/index', function () {
+    return view('rfq.index');
+})->name('rfq.index');
