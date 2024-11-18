@@ -4,7 +4,7 @@
 <div class="container">
     <h2 class="my-4">Daftar RFQ</h2>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a href="{{ route('rfq.create') }}" class="btn btn-primary">+ Add Materials</a>
+        <a href="{{ route('rfq.create') }}" class="btn btn-primary">+ Add RFQ</a>
     </div>
     @php
         // Data dummy sebagai array
@@ -48,6 +48,7 @@
                 <th>Qty Barang</th>
                 <th>Taxes</th>
                 <th>Total (Rp)</th>
+                <th>Detail Barang</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -68,8 +69,13 @@
                 <td>{{ number_format($rfq['total'], 2, ',', '.') }}</td>
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal-{{ $rfq['id'] }}">
-                        Detail
+                        Detail Barang
                     </button>
+                </td>
+                <td>
+                    <a href="{{ route('rfq.show', $rfq['id']) }}" class="btn btn-primary btn-sm">
+                        Detail RFQ
+                    </a>
                 </td>
             </tr>
 

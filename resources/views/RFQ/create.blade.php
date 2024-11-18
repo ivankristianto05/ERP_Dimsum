@@ -47,33 +47,9 @@
                         <th>Unit Price</th>
                         <th>Taxes</th>
                         <th>Sub Total</th>
+                        <th>Aksi</th>
                     </tr>
-                </thead>
-                <tbody id="productTable">
-                    <tr>
-                        <td><input type="text" name="products[0][name]" class="form-control"></td>
-                        <td><input type="text" name="products[0][description]" class="form-control"></td>
-                        <td><input type="number" name="products[0][quantity]" class="form-control" min="1"></td>
-                        <td>
-                            <div class="input-group">
-                                <span class="input-group-text">Rp</span>
-                                <input type="number" name="products[0][unit_price]" class="form-control" min="0" step="0.01">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <span class="input-group-text">Rp</span>
-                                <input type="number" name="products[0][tax]" class="form-control" min="0" step="0.01">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <span class="input-group-text">Rp</span>
-                                <input type="number" name="products[0][subtotal]" class="form-control" readonly>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                </thead>                
             </table>
         </div>
 
@@ -114,60 +90,68 @@
 </div>
 
 <script>
-    let productIndex = 1; // Mulai dari 1 karena baris pertama sudah ada
+    let productIndex = 0; 
 
     function addProductRow() {
-        const tableBody = document.getElementById('productTable');
-        
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><input type="text" name="products[${productIndex}][name]" class="form-control"></td>
-            <td><input type="text" name="products[${productIndex}][description]" class="form-control"></td>
-            <td><input type="number" name="products[${productIndex}][quantity]" class="form-control" min="1"></td>
-            <td>
-                <div class="input-group">
-                    <span class="input-group-text">Rp</span>
-                    <input type="number" name="products[${productIndex}][unit_price]" class="form-control" min="0" step="0.01">
-                </div>
-            </td>
-            <td>
-                <div class="input-group">
-                    <span class="input-group-text">Rp</span>
-                    <input type="number" name="products[${productIndex}][tax]" class="form-control" min="0" step="0.01">
-                </div>
-            </td>
-            <td>
-                <div class="input-group">
-                    <span class="input-group-text">Rp</span>
-                    <input type="number" name="products[${productIndex}][subtotal]" class="form-control" readonly>
-                </div>
-            </td>
-        `;
-        
-        tableBody.appendChild(row);
-        productIndex++; // Increment untuk baris berikutnya
-    }
+    const tableBody = document.getElementById('productTable');
+    const row = document.createElement('tr');
+    
+    row.innerHTML = `
+        <td><input type="text" name="products[${productIndex}][name]" class="form-control"></td>
+        <td><input type="text" name="products[${productIndex}][description]" class="form-control"></td>
+        <td><input type="number" name="products[${productIndex}][quantity]" class="form-control" min="1"></td>
+        <td>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" name="products[${productIndex}][unit_price]" class="form-control" min="0" step="0.01">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" name="products[${productIndex}][tax]" class="form-control" min="0" step="0.01">
+            </div>
+        </td>
+        <td>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" name="products[${productIndex}][subtotal]" class="form-control" readonly>
+            </div>
+        </td>
+        <td><button type="button" class="btn btn-danger btn-sm" onclick="removeProductRow(this)">Hapus</button></td>
+    `;
+
+    tableBody.appendChild(row);
+    productIndex++;
+}
+
+function removeProductRow(button) {
+    const row = button.closest('tr');
+    row.remove();
+}
+
 
     document.addEventListener('input', function () {
-        const rows = document.querySelectorAll('#productTable tr');
-        let totalAmount = 0;
-        let totalTaxes = 0;
+    const rows = document.querySelectorAll('#productTable tr');
+    let totalAmount = 0;
+    let totalTaxes = 0;
 
-        rows.forEach((row) => {
-            const quantity = row.querySelector('[name$="[quantity]"]').value || 0;
-            const unitPrice = row.querySelector('[name$="[unit_price]"]').value || 0;
-            const tax = row.querySelector('[name$="[tax]"]').value || 0;
+    rows.forEach((row) => {
+        const quantity = parseFloat(row.querySelector('[name$="[quantity]"]').value) || 0;
+        const unitPrice = parseFloat(row.querySelector('[name$="[unit_price]"]').value) || 0;
+        const tax = parseFloat(row.querySelector('[name$="[tax]"]').value) || 0;
 
-            const subtotal = quantity * unitPrice;
-            row.querySelector('[name$="[subtotal]"]').value = subtotal.toFixed(2);
+        const subtotal = quantity * unitPrice;
+        row.querySelector('[name$="[subtotal]"]').value = subtotal.toFixed(2);
 
-            totalAmount += subtotal;
-            totalTaxes += (subtotal * tax) / 100;
-        });
-
-        document.getElementById('total_amount').value = totalAmount.toFixed(2);
-        document.getElementById('total_taxes').value = totalTaxes.toFixed(2);
-        document.getElementById('grand_total').value = (totalAmount + totalTaxes).toFixed(2);
+        totalAmount += subtotal;
+        totalTaxes += tax;
     });
+
+    document.getElementById('total_amount').value = totalAmount.toFixed(2);
+    document.getElementById('total_taxes').value = totalTaxes.toFixed(2);
+    document.getElementById('grand_total').value = (totalAmount + totalTaxes).toFixed(2);
+});
+
 </script>
 @endsection

@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\BoMController;
-use App\Http\Controllers\VendorController; // Pastikan VendorController diimpor
+use App\Http\Controllers\VendorController; 
+use App\Http\Controllers\RFQController;
 
 // Route ke halaman dashboard
 Route::get('/', function () {
@@ -48,10 +49,10 @@ Route::get('/manufacturing/create', function () {
 // Route untuk vendor, menggunakan resource controller
 Route::resource('vendor', VendorController::class)->except(['show']);
 
-//route rfq
-Route::get('/rfq/create', function () {
-    return view('rfq.create');
-})->name('rfq.create');
-Route::get('/rfq/index', function () {
-    return view('rfq.index');
-})->name('rfq.index');
+
+// Route untuk RFQ
+Route::get('/rfq', [RFQController::class, 'index'])->name('rfq.index');
+Route::get('/rfq/create', [RFQController::class, 'create'])->name('rfq.create');
+Route::post('/rfq', [RFQController::class, 'store'])->name('rfq.store');
+Route::get('/rfq/{id}', [RFQController::class, 'show'])->name('rfq.show');
+Route::post('/rfq/send/{id}', [RFQController::class, 'send'])->name('rfq.send');
