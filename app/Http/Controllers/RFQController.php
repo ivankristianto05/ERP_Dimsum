@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class RFQController extends Controller
 {
-    // Data dummy sebagai contoh
     private $rfqs = [
         'RFQ001' => [
             'id' => 'RFQ001',
@@ -23,29 +22,19 @@ class RFQController extends Controller
         ],
     ];
 
-    /**
-     * Tampilkan daftar RFQ.
-     */
     public function index()
     {
-        $rfqs = $this->rfqs; // Ganti dengan query database
+        $rfqs = $this->rfqs;
         return view('rfq.index', compact('rfqs'));
     }
 
-    /**
-     * Tampilkan form untuk membuat RFQ baru.
-     */
     public function create()
     {
         return view('rfq.create');
     }
 
-    /**
-     * Simpan RFQ baru.
-     */
     public function store(Request $request)
     {
-        // Validasi input
         $validated = $request->validate([
             'vendor' => 'required|string|max:255',
             'perusahaan' => 'required|string|max:255',
@@ -56,28 +45,17 @@ class RFQController extends Controller
             'produk.*.harga' => 'required|integer|min:0',
         ]);
 
-        // Simpan ke database (contoh, belum implementasi database)
-        // RFQ::create($validated);
-
-        // Redirect ke daftar RFQ dengan pesan sukses
         return redirect()->route('rfq.index')->with('success', 'RFQ berhasil dibuat!');
     }
 
-    /**
-     * Tampilkan detail RFQ berdasarkan ID.
-     */
     public function show($id)
     {
         $rfq = $this->rfqs[$id] ?? abort(404, 'RFQ not found');
         return view('rfq.detail', compact('rfq'));
     }
 
-    /**
-     * Kirim RFQ.
-     */
     public function send($id)
     {
-        // Logika pengiriman RFQ
         return redirect()->route('rfq.show', $id)->with('success', 'RFQ berhasil dikirim!');
     }
 }

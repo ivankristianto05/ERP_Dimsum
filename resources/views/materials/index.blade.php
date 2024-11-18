@@ -18,6 +18,10 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $totalStock = 0;
+                    $totalValue = 0;
+                @endphp
                 @forelse($materials as $material)
                     <tr>
                         <td>
@@ -26,7 +30,6 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-
                                 {{ $material->nama }}
                             </div>
                         </td>
@@ -43,6 +46,10 @@
                             </form>
                         </td>
                     </tr>
+                    @php
+                        $totalStock += $material->jumlah;
+                        $totalValue += $material->jumlah * $material->harga;
+                    @endphp
                 @empty
                     <tr>
                         <td colspan="6" class="text-center">No materials found</td>
@@ -50,11 +57,11 @@
                 @endforelse
             </tbody>
         </table>
-    </div>
 
-    @section('scripts')
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    @endsection
+        <div class="mt-4">
+            <h5>Total Inventory</h5>
+            <p>Total Stock: <strong>{{ $totalStock }}</strong></p>
+            <p>Total Value: <strong>Rp.{{ number_format($totalValue) }}</strong></p>
+        </div>
+    </div>
 @endsection

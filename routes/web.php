@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\BoMController;
-use App\Http\Controllers\VendorController; 
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\RFQController;
 
 // Route ke halaman dashboard
@@ -56,3 +56,4 @@ Route::get('/rfq/create', [RFQController::class, 'create'])->name('rfq.create');
 Route::post('/rfq', [RFQController::class, 'store'])->name('rfq.store');
 Route::get('/rfq/{id}', [RFQController::class, 'show'])->name('rfq.show');
 Route::post('/rfq/send/{id}', [RFQController::class, 'send'])->name('rfq.send');
+Route::put('/rfq/{id}/status', [RFQController::class, 'updateStatus'])->name('rfq.updateStatus');
