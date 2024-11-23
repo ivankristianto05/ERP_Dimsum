@@ -435,7 +435,7 @@ h6 {
   transition: 0.3s;
   width: 100%;
 }
-/* Hide submenu by default */
+
 .sidebar-nav .submenu {
   display: none;
   list-style: none;
