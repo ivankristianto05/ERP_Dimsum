@@ -148,6 +148,11 @@
                             <i class="bi bi-circle"></i>Vendor
                         </a>
                     </li>
+                    <li>
+                        <a class="{{ request()->is('customers*') ? 'active' : '' }}" href="/customers">
+                            <i class="bi bi-circle"></i>customers
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

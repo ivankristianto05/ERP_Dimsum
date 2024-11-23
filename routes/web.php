@@ -6,6 +6,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\BoMController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\RFQController;
+use App\Http\Controllers\CustomerController;
 
 // Route ke halaman dashboard
 Route::get('/', function () {
@@ -57,3 +58,9 @@ Route::post('/rfq', [RFQController::class, 'store'])->name('rfq.store');
 Route::get('/rfq/{id}', [RFQController::class, 'show'])->name('rfq.show');
 Route::post('/rfq/send/{id}', [RFQController::class, 'send'])->name('rfq.send');
 Route::put('/rfq/{id}/status', [RFQController::class, 'updateStatus'])->name('rfq.updateStatus');
+
+// Route untuk customers
+
+Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
+Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
+Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
