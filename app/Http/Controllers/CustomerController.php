@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     private $customers = [
-        ['id' => 1, 'name' => 'John Doe', 'email' => 'john@example.com', 'phone' => '123-456-7890', 'address' => 'Malang'],
-        ['id' => 2, 'name' => 'Jane Smith', 'email' => 'jane@example.com', 'phone' => '098-765-4321', 'address' => 'Surabaya'],
+        ['id' => 1, 'name' => 'John Doe', 'email' => 'john@example.com', 'phone' => '123-456-7890', 'address' => 'Malang', 'status' => 'New'],
+        ['id' => 2, 'name' => 'Jane Smith', 'email' => 'jane@example.com', 'phone' => '098-765-4321', 'address' => 'Surabaya', 'status' => 'New'],
     ];
 
     public function index()
@@ -41,6 +41,7 @@ class CustomerController extends Controller
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
             'address' => $request->input('address'),
+            'status' => 'New', // Status default
         ];
 
         // Tambahkan customer baru ke session
@@ -48,5 +49,28 @@ class CustomerController extends Controller
         session(['customers' => $customers]);
 
         return redirect()->route('customers.index')->with('success', 'Customer added successfully!');
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        // Ambil data dari session
+        $customers = session('customers', $this->customers);
+
+        // Cari customer berdasarkan ID
+        foreach ($customers as &$customer) {
+            if ($customer['id'] == $id) {
+                $customer['status'] = $request->input('status');
+                break;
+            }
+        }
+
+        // Simpan kembali ke session
+        session(['customers' => $customers]);
+
+        return response()->json(['success' => true, 'status' => $request->input('status')]);
     }
 }
